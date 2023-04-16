@@ -10,27 +10,20 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List todoList = [];
   late String _userTodo;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initFirebase();
+  }
 
   void initFirebase() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp();
   }
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    initFirebase();
-
-    todoList.addAll([
-      "Go in for sports",
-      "Go to the shop",
-      "Buy potato",
-    ]);
-  }
 
   void _menuOpen() {
     Navigator.of(context)
@@ -90,7 +83,7 @@ class _HomeState extends State<Home> {
             AsyncSnapshot<QuerySnapshot<Map<String, dynamic>>> snapshot) {
           if (!snapshot.hasData) return Text("No notes");
           return ListView.builder(
-              itemCount: snapshot.data!.docs.length,
+              itemCount: snapshot.data?.docs.length,
               itemBuilder: (BuildContext context, int index) {
                 return Dismissible(
                     key: Key(snapshot.data!.docs[index].id),
@@ -98,19 +91,23 @@ class _HomeState extends State<Home> {
                       child: ListTile(
                         trailing: IconButton(
                             onPressed: () {
-                              setState(() {
-                                todoList.removeAt(index);
-                              });
+                              FirebaseFirestore.instance
+                                  .collection("items")
+                                  .doc(snapshot.data!.docs[index].id)
+                                  .delete();
                             },
                             icon: Icon(
                               Icons.delete,
                               color: Colors.green,
                             )),
-                        title: Text(snapshot.data!.docs[index].get("item")),
+                        title: Text(snapshot.data?.docs[index].get("item")),
                       ),
                     ),
                     onDismissed: (direction) {
-                      todoList.removeAt(index);
+                      FirebaseFirestore.instance
+                          .collection("items")
+                          .doc(snapshot.data!.docs[index].id)
+                          .delete();
                     });
               });
         },
