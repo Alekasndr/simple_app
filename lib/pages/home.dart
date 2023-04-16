@@ -23,6 +23,43 @@ class _HomeState extends State<Home> {
     ]);
   }
 
+  void _menuOpen() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (BuildContext buildContext) {
+      return Scaffold(
+        backgroundColor: Colors.grey[800],
+        appBar: AppBar(
+          title: Text("Menu"),
+          backgroundColor: Colors.green,
+          centerTitle: true,
+        ),
+        body: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(padding: EdgeInsets.only(top: 200)),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/', (route) => false);
+              },
+              child: Text(
+                "On Main",
+                style: TextStyle(
+                  fontSize: 26,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.green,
+                minimumSize: Size(150, 80), //////// HERE
+              ),
+            )
+          ],
+        ),
+      );
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +68,12 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.green,
         title: Text("To-do list"),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.menu),
+            onPressed: _menuOpen,
+          )
+        ],
       ),
       body: ListView.builder(
           itemCount: todoList.length,
