@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_app/pages/home.dart';
-import 'package:simple_app/pages/mainscreen.dart';
+import 'package:simple_app/pages/main_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 void main() async {

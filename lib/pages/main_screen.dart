@@ -9,7 +9,7 @@ class MainScrean extends StatelessWidget {
       backgroundColor: Colors.grey[800],
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: const Text("To-do list"),
+        title: const Text('To-do list'),
         centerTitle: true,
       ),
       body: Row(
@@ -19,7 +19,7 @@ class MainScrean extends StatelessWidget {
             children: [
               const Padding(padding: EdgeInsets.only(top: 20)),
               const Text(
-                "Main Screan",
+                'Main Screan',
                 style: TextStyle(
                   fontSize: 30,
                   color: Colors.white,
@@ -33,7 +33,7 @@ class MainScrean extends StatelessWidget {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.green,
                   ),
-                  child: const Text("Next")),
+                  child: const Text('Next')),
             ],
           ),
         ],
