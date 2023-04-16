@@ -6,34 +6,38 @@ class MainScrean extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.grey[800],
-        appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: Text("To-do list"),
-          centerTitle: true,
-        ),
-        body: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      backgroundColor: Colors.grey[800],
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: const Text("To-do list"),
+        centerTitle: true,
+      ),
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
           Column(
             children: [
-              Padding(padding: EdgeInsets.only(top: 20)),
-              Text(
+              const Padding(padding: EdgeInsets.only(top: 20)),
+              const Text(
                 "Main Screan",
                 style: TextStyle(
                   fontSize: 30,
                   color: Colors.white,
                 ),
               ),
-              Padding(padding: EdgeInsets.only(top: 20)),
+              const Padding(padding: EdgeInsets.only(top: 20)),
               ElevatedButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/todo');
                   },
-                  child: Text("Next"),
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.green,
-                  )),
+                    backgroundColor: Colors.green,
+                  ),
+                  child: const Text("Next")),
             ],
           ),
-        ]));
+        ],
+      ),
+    );
   }
 }
